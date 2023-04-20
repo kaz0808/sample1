@@ -13,7 +13,12 @@
     <ul>
         <% filenames.map(file=> { %>
             <li>
-                <%= file %>
+                <form action="/filedel" method="post">
+                    <input type="hidden" name="filename" value="<%= file %>">
+                    <p><%= file %></p>
+                    <input type="submit" value="削除">
+                </form>
+                
             </li>
             <% }) %>
     </ul>
@@ -28,7 +33,7 @@
         <select name="displaytype">
             <option value="1" selected>選択してください</option>
             <option value="1">通常表示</option>
-            <option value="3">スライド表示</option>
+            <option value="3">パターン２表示（現状は秒数の倍の時間で切り替え）</option>
         </select>
         <h3>画像切り替え時間(秒)</h3>
         <input type="text" name="time" value="3">

@@ -12,17 +12,14 @@
         function changeImage() {
           const imgElement = document.getElementById('show');
           imgElement.src = `${images[currentImage]}`;
-          currentImage = (currentImage + 1) % images.length;
+          if(<%= displaytype %> != '3'){
+            currentImage = (currentImage + 1) % images.length;
           setTimeout(changeImage, Number('<%= time %>')*1000);
-        }''
-        function SlidechangeImage() {
-          const imgElement = document.getElementById('show');
-          imgElement.src = `${images[currentImage]}`;
-          images[currentImageIndex].style.transform = 'translateX(-100%)';
-          currentImage = (currentImage + 1) % images.length;
-          images[currentImageIndex].style.transform = 'translateX(0%)';
-        };
-    
+          }else{
+            currentImage = (currentImage + 1) % images.length;
+          setTimeout(changeImage, Number('<%= time %>')*2000);
+          }
+        }
         window.onload = function() {
           changeImage();
         };
@@ -32,6 +29,7 @@
         width: 500px;
         height: 500px;
        }
+       
       </style>
 </head>
 <body>

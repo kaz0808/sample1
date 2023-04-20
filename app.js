@@ -47,6 +47,19 @@ app.post('/display', (req, res) => {
         console.log(displaytype);
     res.render('display.ejs', { images,time,displaytype});
 });
+app.post('/filedel',(req, res) => {
+    filepath='imgfile/'+ req.body.filename;
+    console.log(filepath)
+    fs.unlink(filepath, (err) => {
+        if (err) {
+          console.error(`Failed to delete file:`, err);
+          res.redirect('/');
+        } else {
+          console.log(`File deleted:`);
+          res.redirect('/');
+        }
+      });
+});
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
