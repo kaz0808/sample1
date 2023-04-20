@@ -3,6 +3,10 @@ const multer = require('multer');
 const fs = require('fs');
 const app = express();
 const port = 3000;
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'imgfile')
@@ -34,10 +38,14 @@ app.post('/upload', upload.single('image'), (req, res) => {
         res.redirect('/');
     }
 });
-app.get('/display', (req, res) => {
+app.post('/display', (req, res) => {
     const path = process.cwd();
+    const displaytype = req.body.displaytype;
+    const time= req.body.time;
     const images = fs.readdirSync('imgfile');
-    res.render('display.ejs', { images });
+    console.log(time);
+        console.log(displaytype);
+    res.render('display.ejs', { images,time,displaytype});
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

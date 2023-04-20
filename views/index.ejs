@@ -22,6 +22,18 @@
         <input type="file" name="image">
         <button type="submit">Upload</button>
     </form>
-    <h2><a href="/display">表示画面に移動する</a></h2>
+    <h2>表示設定</h2>
+    <form action="/display" method="post">
+        <h3>表示方法</h3>
+        <select name="displaytype">
+            <option value="1" selected>選択してください</option>
+            <option value="1">通常表示</option>
+            <option value="3">スライド表示</option>
+        </select>
+        <h3>画像切り替え時間(秒)</h3>
+        <input type="text" name="time" value="3">
+        <button type="submit">表示画面に移動する</button>
+    </form>
+</body>
 
 </html>
